@@ -2,9 +2,7 @@
 h	~/
 d	~/Documents
 D	~/Downloads
-m	~/Music
-pp	~/Pictures
-vv	~/Videos
+G	~/Git
 cf	~/.config
 sc	~/.scripts
 mn	/mnt
