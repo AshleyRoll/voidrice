@@ -54,3 +54,8 @@ alias YT="youtube-viewer"
 
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
 vf() { $EDITOR $(fzf) ;}
+
+# Support for Azure CLI
+# install: curl -L https://aka.ms/InstallAzureCli | bash
+export PATH=$PATH:~/bin
+[ -f "$HOME/lib/azure-cli/az.completion" ] && source "$HOME/lib/azure-cli/az.completion"
