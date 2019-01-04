@@ -12,6 +12,8 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'jreybert/vimagit'
 Plug 'LukeSmithxyz/vimling'
 Plug 'vimwiki/vimwiki'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --cs-completer' }
+Plug 'OmniSharp/omnisharp-vim'
 call plug#end()
 
 " Some basics:

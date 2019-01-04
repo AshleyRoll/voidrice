@@ -13,7 +13,7 @@ export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
 export PIX="$HOME/.pix/"
 
 # less/man colors
-export LESS="-R -E -F -X"
+export LESS="-R"
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
 export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
