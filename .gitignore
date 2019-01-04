@@ -1,0 +1,36 @@
+#
+# This is a Git repo that will be part in the root of a user directory
+#
+# We want to ignore most of the stuff automatically so we don't accidentially add
+# it during configuration change commits
+#
+
+# we dont want to add the user's .gitconfig
+.gitconfig
+
+# General stuff
+.Xauthority
+.esd_auth
+.bash_history
+.bash_logout
+.cache/
+.mozilla/
+.ssh/
+.vim/
+.viminfo
+.lesshst
+.local/
+
+# Add directoies starting with a capitol letter
+[A-Z]*/
+
+# LARBS generated stuff
+.fehbg
+.shortcuts
+
+# Additional Configs
+.config/.mono/
+.config/pulse/
+.config/mpd/
+
+
