@@ -13,7 +13,7 @@ HISTSIZE= HISTFILESIZE= # Infinite history.
 [ -f /usr/share/git/completion/git-completion.bash ] && source /usr/share/git/completion/git-completion.bash
 [ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 1)\]`__git_ps1`\[$(tput setaf 7)\]\\n\\$ \[$(tput sgr0)\]"
+export PS1='\[$(tput bold)\]\[$(tput setaf 1)\]\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\w\[$(tput setaf 1)\]$(__git_ps1 " (%s)")\[$(tput setaf 7)\]\n\$ \[$(tput sgr0)\]'
 
 [ -f "$HOME/.shortcuts" ] && source "$HOME/.shortcuts" # Load shortcut aliases
 
@@ -29,7 +29,7 @@ alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
 alias e="$EDITOR"
 alias p="sudo pacman"
 alias SS="sudo systemctl"
-alias v="vim"
+alias vi="vim"
 alias sv="sudo vim"
 alias r="ranger"
 alias sr="sudo ranger"

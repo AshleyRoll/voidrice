@@ -20,6 +20,10 @@ call plug#end()
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+	set nowrap
+
+	set softtabstop=0 noexpandtab
+	set shiftwidth=4 tabstop=4
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
@@ -65,7 +69,7 @@ call plug#end()
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
 
-" Readmes autowrap text:
+" Readmes autowrap text
 	autocmd BufRead,BufNewFile *.md set tw=79
 
 " Use urlscan to choose and open a url:
