@@ -26,6 +26,7 @@
 .mono/
 .omnisharp/
 .wine/
+.dotnet
 
 # Add directoies we use
 [A-Z]*/
@@ -41,4 +42,4 @@ lib/
 .config/pulse/
 .config/mpd/
 .config/menus/
-
+.config/dconf/
