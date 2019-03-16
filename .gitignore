@@ -26,7 +26,7 @@
 .mono/
 .omnisharp/
 .wine/
-.dotnet
+.dotnet/
 
 # Add directoies we use
 [A-Z]*/
@@ -43,3 +43,9 @@ lib/
 .config/mpd/
 .config/menus/
 .config/dconf/
+.config/htop/
+.config/youtube-viewer/
+.python_history
+
+# don't add additional calcurse files
+.calcurse/

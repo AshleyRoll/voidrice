@@ -12,6 +12,9 @@ export REFER="$HOME/.referbib"
 export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
 export PIX="$HOME/.pix/"
 
+# other utility paths
+export PATH="$PATH:/opt/microchip/xc32/v2.15/bin"
+
 # less/man colors
 export LESS="-R"
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold

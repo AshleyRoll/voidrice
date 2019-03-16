@@ -12,7 +12,7 @@ Plug 'itchyny/lightline.vim'
 "Plug 'jreybert/vimagit'
 Plug 'vimwiki/vimwiki'
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --cs-completer' }
-"Plug 'OmniSharp/omnisharp-vim'
+Plug 'OmniSharp/omnisharp-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
