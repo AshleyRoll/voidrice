@@ -45,6 +45,12 @@ lib/
 .config/dconf/
 .config/htop/
 .config/youtube-viewer/
+.config/configstore/
+.config/teamviewer
+.dmrc
+.npm/
+.nuget/
+.templateengine/
 .python_history
 
 # don't add additional calcurse files
