@@ -47,11 +47,18 @@ lib/
 .config/youtube-viewer/
 .config/configstore/
 .config/teamviewer
+.config/QtProject.conf
+.config/WSJT-X.ini
+.config/gqrx
 .dmrc
 .npm/
 .nuget/
 .templateengine/
 .python_history
+.java
+.gnuradio
+.gr_fftw*
+.xsession*
 
 # don't add additional calcurse files
 .calcurse/
