@@ -42,7 +42,7 @@ alias bw="wal -i ~/.config/wall.png" # Rerun pywal
 
 # Adding color
 alias ls='ls -hN --color=auto --group-directories-first'
-alias ll='ls -FlaghN --color=auto --group-directories-first'
+alias ll='ls -FlahN --color=auto --group-directories-first'
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.

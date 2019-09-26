@@ -7,15 +7,19 @@
 "let mapleader =" "
 
 call plug#begin('~/.vim/plugged')
-Plug 'mboughaba/i3config.vim'
+" Themes
 Plug 'itchyny/lightline.vim'
-"Plug 'jreybert/vimagit'
+
+" basic tools
 Plug 'vimwiki/vimwiki'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --cs-completer' }
-Plug 'OmniSharp/omnisharp-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
+Plug 'mboughaba/i3config.vim'
+
+" PlantUML
+Plug 'aklt/plantuml-syntax'
+
 call plug#end()
 
 " Some basics:
@@ -77,5 +81,16 @@ call plug#end()
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+
+" Make command short cuts
+" Silent
+nnoremap <C-F5> :w<CR> :silent make<CR>:redr!<CR>
+inoremap <C-F5> <Esc>:w<CR>:silent make<CR>:redr!<CR>
+vnoremap <C-F5> :<C-U>:w<CR>:silent make<CR>:redr!<CR>
+" Not Silent
+nnoremap <F5> :w<CR> :make<CR>
+inoremap <F5> <Esc>:w<CR>:make<CR>
+vnoremap <F5> :<C-U>:w<CR>:make<CR>
+
 
 

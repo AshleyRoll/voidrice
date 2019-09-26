@@ -60,5 +60,6 @@ lib/
 .gr_fftw*
 .xsession*
 
-# don't add additional calcurse files
+# don't add additional config/cache files and folders
 .calcurse/
+.stellarium/
