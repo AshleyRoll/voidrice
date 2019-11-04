@@ -50,6 +50,9 @@ lib/
 .config/QtProject.conf
 .config/WSJT-X.ini
 .config/gqrx
+.AstroDMx/
+.config/kstars.kmessagebox
+.config/kstarsrc
 .dmrc
 .npm/
 .nuget/
