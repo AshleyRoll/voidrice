@@ -32,6 +32,7 @@
 [A-Z]*/
 bin/
 lib/
+dev/
 
 # LARBS generated stuff
 .fehbg
@@ -66,3 +67,6 @@ lib/
 # don't add additional config/cache files and folders
 .calcurse/
 .stellarium/
+.gsutil/
+.pki/
+
