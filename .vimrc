@@ -8,7 +8,7 @@
 
 call plug#begin('~/.vim/plugged')
 " Themes
-Plug 'itchyny/lightline.vim'
+Plug 'rbong/vim-crystalline'
 
 " basic tools
 Plug 'vimwiki/vimwiki'
@@ -32,12 +32,51 @@ call plug#end()
 
 	set softtabstop=0 noexpandtab
 	set shiftwidth=4 tabstop=4
-" LightLine (status bar) setup
+" statusline, tablin, bufferline setup
 	set laststatus=2
 	set noshowmode
-	let g:lightline = {
-	      \ 'colorscheme': 'wombat',
-	      \ }
+	set showtabline=2
+	set guioptions-=e
+
+function! StatusLine(current, width)
+  let l:s = ''
+
+  if a:current
+    let l:s .= crystalline#mode() . crystalline#right_mode_sep('')
+  else
+    let l:s .= '%#CrystallineInactive#'
+  endif
+  let l:s .= ' %f%h%w%m%r '
+  if a:current
+    let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}'
+  endif
+
+  let l:s .= '%='
+  if a:current
+    let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
+    let l:s .= crystalline#left_mode_sep('')
+  endif
+  if a:width > 80
+    let l:s .= ' %{&ft}[%{&fenc!=#""?&fenc:&enc}][%{&ff}] %l/%L %c%V %P '
+  else
+    let l:s .= ' '
+  endif
+
+  return l:s
+endfunction
+
+function! TabLine()
+  let l:vimlabel = has('nvim') ?  ' NVIM ' : ' VIM '
+  return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
+endfunction
+
+let g:crystalline_enable_sep = 1
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_tabline_fn = 'TabLine'
+let g:crystalline_theme = 'badwolf'
+
+
+
 
 " Enable autocompletion:
 	set wildmode=longest,list,full
@@ -55,9 +94,6 @@ call plug#end()
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
-
-" Runs a script that cleans out tex build files whenever I close out of a .tex file.
-	autocmd VimLeave *.tex !texclear %
 
 " Ensure files are read as what I want:
 	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
