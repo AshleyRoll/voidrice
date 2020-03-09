@@ -22,6 +22,7 @@ Plug 'aklt/plantuml-syntax'
 
 call plug#end()
 
+
 " Some basics:
 	set nocompatible
 	filetype plugin on
@@ -32,12 +33,18 @@ call plug#end()
 
 	set softtabstop=0 noexpandtab
 	set shiftwidth=4 tabstop=4
+
+	set background=dark
+
 " statusline, tablin, bufferline setup
 	set laststatus=2
 	set noshowmode
 	set showtabline=2
 	set guioptions-=e
 
+" -------------------------------------------------------------------
+" Crystaline Theme setup
+" -------------------------------------------------------------------
 function! StatusLine(current, width)
   let l:s = ''
 
@@ -73,9 +80,12 @@ endfunction
 let g:crystalline_enable_sep = 1
 let g:crystalline_statusline_fn = 'StatusLine'
 let g:crystalline_tabline_fn = 'TabLine'
-let g:crystalline_theme = 'badwolf'
+let g:crystalline_theme = 'gruvbox'
 
+" -------------------------------------------------------------------
 
+" Configure swap files to go to ~/.vim/tmp
+	set directory^=~/.vim/tmp//
 
 
 " Enable autocompletion:
@@ -121,13 +131,13 @@ let g:crystalline_theme = 'badwolf'
 
 " Make command short cuts
 " Silent
-nnoremap <C-F5> :w<CR> :silent make<CR>:redr!<CR>
-inoremap <C-F5> <Esc>:w<CR>:silent make<CR>:redr!<CR>
-vnoremap <C-F5> :<C-U>:w<CR>:silent make<CR>:redr!<CR>
+	nnoremap <C-F5> :w<CR> :silent make<CR>:redr!<CR>
+	inoremap <C-F5> <Esc>:w<CR>:silent make<CR>:redr!<CR>
+	vnoremap <C-F5> :<C-U>:w<CR>:silent make<CR>:redr!<CR>
 " Not Silent
-nnoremap <F5> :w<CR> :make<CR>
-inoremap <F5> <Esc>:w<CR>:make<CR>
-vnoremap <F5> :<C-U>:w<CR>:make<CR>
+	nnoremap <F5> :w<CR> :make<CR>
+	inoremap <F5> <Esc>:w<CR>:make<CR>
+	vnoremap <F5> :<C-U>:w<CR>:make<CR>
 
 
 
