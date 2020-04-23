@@ -28,23 +28,23 @@ call plug#end()
 
 
 " Some basics:
-	set nocompatible
-	filetype plugin on
-	syntax on
-	set encoding=utf-8
-	set number relativenumber
-	set nowrap
+    set nocompatible
+    filetype plugin on
+    syntax on
+    set encoding=utf-8
+    set number relativenumber
+    set nowrap
 
-	set softtabstop=0 noexpandtab
-	set shiftwidth=4 tabstop=4
+    set softtabstop=0 expandtab
+    set shiftwidth=4 tabstop=4
 
-	set background=dark
+    set background=dark
 
 " statusline, tablin, bufferline setup
-	set laststatus=2
-	set noshowmode
-	set showtabline=2
-	set guioptions-=e
+    set laststatus=2
+    set noshowmode
+    set showtabline=2
+    set guioptions-=e
 
 " -------------------------------------------------------------------
 " Crystaline Theme setup
@@ -88,74 +88,111 @@ let g:crystalline_theme = 'gruvbox'
 
 
 " Configure swap files to go to ~/.vim/tmp
-	set directory^=~/.vim/tmp//
+    set directory^=~/.vim/tmp//
 
 
 " Enable autocompletion:
-	set wildmode=longest,list,full
+    set wildmode=longest,list,full
 " Disables automatic commenting on newline:
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
-	map <leader>o :setlocal spell! spelllang=en_au<CR>
+    map <leader>o :setlocal spell! spelllang=en_au<CR>
 
+"-------------------------------------------------------------------
+" Splits
+"-------------------------------------------------------------------
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults
-	set splitbelow splitright
+    set splitbelow splitright
 
 " Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
+    map <C-h> <C-w>h
+    map <C-j> <C-w>j
+    map <C-k> <C-w>k
+    map <C-l> <C-w>l
 
+" Make adjusting split sizes easier
+    noremap <silent> <C-Left> :vertical resize +3<CR>
+    noremap <silent> <C-Right> :vertical resize -3<CR>
+    noremap <silent> <C-Up> :resize +3<CR>
+    noremap <silent> <C-Down> :resize +3<CR>
+
+" Toggle between vertical and horizontal split layout
+    map <leader>th <C-w>t<C-w>H
+    map <leader>tk <C-w>t<C-w>K
+
+" Remove the pipes from the seperator on splits
+    set fillchars+=vert:\ 
+
+"-------------------------------------------------------------------
+" File type configuration 
+"-------------------------------------------------------------------
 " Ensure files are read as what I want:
-	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
-	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-	autocmd BufRead,BufNewFile *.tex set filetype=tex
+    let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+    autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
+    autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
+    autocmd BufRead,BufNewFile *.tex set filetype=tex
 
 " Readmes autowrap text
-	autocmd BufRead,BufNewFile *.md set tw=79
-
-" Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
-	vnoremap <C-c> "+y
-	map <C-p> "+P
-	set clipboard=unnamed
+    autocmd BufRead,BufNewFile *.md set tw=79
 
 
 " Automatically deletes all trailing whitespace on save.
-	autocmd BufWritePre * %s/\s\+$//e
+" except any buffer we set the b:noStripWhitespace flag
+
+    fun! StripTrailingWhitespace()
+        " Only strip if the b:noStripWhitespace variable isn't set
+        if exists('b:noStripWhitespace') && b:noStripWhitespace == 1
+            return
+        endif
+        %s/\s\+$//e
+    endfun
+
+
+    autocmd BufWritePre * call StripTrailingWhitespace()
+    " override for some file types
+    autocmd BufRead,BufNewfile ~/.vimrc let b:noStripWhitespace=1
 
 " When shortcut files are updated, renew bash and ranger configs with new material:
-	autocmd BufWritePost ~/.bm* !shortcuts
+    autocmd BufWritePost ~/.bm* !shortcuts
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
-	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+    autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+
+" -------------------------------------------------------------------
+" Configure some other key mapping
+" -------------------------------------------------------------------
+" Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
+    vnoremap <C-c> "+y
+    map <C-p> "+P
+    set clipboard=unnamed
+
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+    :imap <C-BS> <C-W>
 
 " Make command short cuts
 " Silent
-	nnoremap <C-F5> :w<CR> :silent make<CR>:redr!<CR>
-	inoremap <C-F5> <Esc>:w<CR>:silent make<CR>:redr!<CR>
-	vnoremap <C-F5> :<C-U>:w<CR>:silent make<CR>:redr!<CR>
+    nnoremap <C-F5> :w<CR> :silent make<CR>:redr!<CR>
+    inoremap <C-F5> <Esc>:w<CR>:silent make<CR>:redr!<CR>
+    vnoremap <C-F5> :<C-U>:w<CR>:silent make<CR>:redr!<CR>
 " Not Silent
-	nnoremap <F5> :w<CR> :make<CR>
-	inoremap <F5> <Esc>:w<CR>:make<CR>
-	vnoremap <F5> :<C-U>:w<CR>:make<CR>
+    nnoremap <F5> :w<CR> :make<CR>
+    inoremap <F5> <Esc>:w<CR>:make<CR>
+    vnoremap <F5> :<C-U>:w<CR>:make<CR>
 
 " -------------------------------------------------------------------
 " Configure Session Management
 " -------------------------------------------------------------------
-	" Basic configuration
-	let g:session_directory='~/.vim/sessions'
-	let g:session_autosave='yes'		" autosave the session on exit
-	let g:session_autoload='yes'		" autoload the default session if no files are provided
-	let g:session_autosave_periodic=5	" autosave sessions every x minutes
-	let g:session_verbose_messages=0	" don't tell me how to disable load / save prompts
+    " Basic configuration
+    let g:session_directory='~/.vim/sessions'
+    let g:session_autosave='yes'        " autosave the session on exit
+    let g:session_autoload='yes'        " autoload the default session if no files are provided
+    let g:session_autosave_periodic=5    " autosave sessions every x minutes
+    let g:session_verbose_messages=0    " don't tell me how to disable load / save prompts
 
-	" Session contents
-	set sessionoptions-=help			" Don't persist open help windows
-	set sessionoptions-=buffers			" Don't persist hidden and unloaded buffers
-	let g:session_persist_font=0		" Don't persist fonts
-	let g:session_persist_colors=0		" Don't persist colours (allow theme to manage)
-
+    " Session contents
+    set sessionoptions-=help            " Don't persist open help windows
+    set sessionoptions-=buffers            " Don't persist hidden and unloaded buffers
+    let g:session_persist_font=0        " Don't persist fonts
+    let g:session_persist_colors=0        " Don't persist colours (allow theme to manage)
 

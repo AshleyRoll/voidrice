@@ -27,6 +27,12 @@
 .omnisharp/
 .wine/
 .dotnet/
+.gnupg/
+.mchp_packs/
+.mplab_ide/
+.mplab_ipe/
+.mplabcomm/
+go/
 
 # Add directoies we use
 [A-Z]*/
