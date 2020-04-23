@@ -19,25 +19,9 @@ export PS1='\[$(tput bold)\]\[$(tput setaf 1)\]\[$(tput setaf 3)\]\u\[$(tput set
 
 export GPG_TTY=$(tty)
 
-# System Maintainence
-alias mw="~/.config/mutt/mutt-wizard.sh"
-alias muttwizard="~/.config/mutt/mutt-wizard.sh"
-alias sdn="sudo shutdown now"
-alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
-
 # Some aliases
-alias e="$EDITOR"
-alias p="sudo pacman"
-alias SS="sudo systemctl"
-alias vi="vim"
-alias sv="sudo vim"
+alias vi="nvim"
 alias r="ranger"
-alias sr="sudo ranger"
-alias ka="killall"
-alias g="git"
-alias trem="transmission-remote"
-alias mkd="mkdir -pv"
-alias ref="shortcuts && source ~/.bashrc" # Refresh shortcuts manually and reload bashrc
 alias bw="wal -i ~/.config/wall.png" # Rerun pywal
 
 # Adding color
