@@ -40,6 +40,9 @@ call plug#end()
 
     set background=dark
 
+" clear seach highlights on esc in normal mode
+    nnoremap <silent> <esc> :noh<return><esc>
+
 " statusline, tablin, bufferline setup
     set laststatus=2
     set noshowmode
