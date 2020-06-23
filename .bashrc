@@ -23,6 +23,7 @@ export GPG_TTY=$(tty)
 alias vi="nvim"
 alias r="ranger"
 alias bw="wal -i ~/.config/wall.png" # Rerun pywal
+alias nanovna="pushd ~/Git/Electronics/nanovna-saver; python3 nanovna-saver.py; popd"
 
 # Adding color
 alias ls='ls -hN --color=auto --group-directories-first'
@@ -41,5 +42,6 @@ vf() { $EDITOR $(fzf) ;}
 
 # Support for Azure CLI
 # install: curl -L https://aka.ms/InstallAzureCli | bash
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/.local/bin:~/.gem/ruby/2.7.0/bin
+
 [ -f "$HOME/lib/azure-cli/az.completion" ] && source "$HOME/lib/azure-cli/az.completion"

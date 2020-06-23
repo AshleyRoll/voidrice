@@ -171,7 +171,11 @@ let g:crystalline_theme = 'gruvbox'
     set clipboard=unnamed
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
-    :imap <C-BS> <C-W>
+" The C-_ is needed for terminal mode support it seems
+    set backspace=indent,eol,start
+
+    inoremap <C-BS> <C-w>
+    inoremap <C-_> <C-w>
 
 " Make command short cuts
 " Silent

@@ -70,6 +70,7 @@ dev/
 .gnuradio
 .gr_fftw*
 .xsession*
+.sqlite_history
 
 # don't add additional config/cache files and folders
 .calcurse/
@@ -77,4 +78,5 @@ dev/
 .stellarium/
 .gsutil/
 .pki/
-
+.gem/
+.bundle/
