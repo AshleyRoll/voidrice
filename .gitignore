@@ -33,6 +33,7 @@
 .mplab_ipe/
 .mplabcomm/
 go/
+.minecraft/
 
 # Add directoies we use
 [A-Z]*/
