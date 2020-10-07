@@ -172,7 +172,6 @@ let g:crystalline_theme = 'gruvbox'
     set backspace=indent,eol,start
 
     inoremap <C-BS> <C-w>
-    inoremap <C-_> <C-w>
 
 " Make command short cuts
 " Silent
