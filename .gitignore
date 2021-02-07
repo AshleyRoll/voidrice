@@ -62,6 +62,9 @@ dev/
 .AstroDMx/
 .config/kstars.kmessagebox
 .config/kstarsrc
+.config/freerdp
+
+.wget-hsts
 .dmrc
 .npm/
 .nuget/
