@@ -7,6 +7,7 @@
 
 # Adds `~/.local/bin` to $PATH
 export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:/home/ash/.local/share/gem/ruby/2.7.0/bin"
 
 unsetopt PROMPT_SP
 
@@ -154,3 +155,4 @@ fi
 
 # Switch escape and caps if tty and no passwd required:
 sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
+

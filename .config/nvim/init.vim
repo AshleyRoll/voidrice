@@ -1,4 +1,9 @@
-let mapleader =","
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+
 
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
@@ -8,142 +13,192 @@ if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autolo
 endif
 
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-Plug 'tpope/vim-surround'
-Plug 'preservim/nerdtree'
-Plug 'junegunn/goyo.vim'
-Plug 'jreybert/vimagit'
-Plug 'lukesmithxyz/vimling'
+" Themes
+Plug 'rbong/vim-crystalline'
+
+" basic tools
 Plug 'vimwiki/vimwiki'
-Plug 'bling/vim-airline'
-Plug 'tpope/vim-commentary'
-Plug 'ap/vim-css-color'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'mboughaba/i3config.vim'
+
+" PlantUML
+"Plug 'aklt/plantuml-syntax'
+
+" Session Manager
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+
 call plug#end()
 
-set title
-set bg=light
-set go=a
-set mouse=a
-set nohlsearch
-set clipboard+=unnamedplus
-set noshowmode
-set noruler
-set laststatus=0
-set noshowcmd
 
 " Some basics:
-	nnoremap c "_c
-	set nocompatible
-	filetype plugin on
-	syntax on
-	set encoding=utf-8
-	set number relativenumber
+    set nocompatible
+    filetype plugin on
+    syntax on
+    set encoding=utf-8
+    set number relativenumber
+    set nowrap
+
+    set softtabstop=0 expandtab
+    set shiftwidth=4 tabstop=4
+
+    set background=dark
+
+" statusline, tablin, bufferline setup
+    set laststatus=2
+    set noshowmode
+    set showtabline=2
+    set guioptions-=e
+
+" -------------------------------------------------------------------
+" Crystaline Theme setup
+" -------------------------------------------------------------------
+function! StatusLine(current, width)
+  let l:s = ''
+
+  if a:current
+    let l:s .= crystalline#mode() . crystalline#right_mode_sep('')
+  else
+    let l:s .= '%#CrystallineInactive#'
+  endif
+  let l:s .= ' %f%h%w%m%r '
+  if a:current
+    let l:s .= crystalline#right_sep('', 'Fill') . ' %{fugitive#head()}'
+  endif
+
+  let l:s .= '%='
+  if a:current
+    let l:s .= crystalline#left_sep('', 'Fill') . ' %{&paste ?"PASTE ":""}%{&spell?"SPELL ":""}'
+    let l:s .= crystalline#left_mode_sep('')
+  endif
+  if a:width > 80
+    let l:s .= ' %{&ft}[%{&fenc!=#""?&fenc:&enc}][%{&ff}] %l/%L %c%V %P '
+  else
+    let l:s .= ' '
+  endif
+
+  return l:s
+endfunction
+
+function! TabLine()
+  let l:vimlabel = has('nvim') ?  ' NVIM ' : ' VIM '
+  return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
+endfunction
+
+let g:crystalline_enable_sep = 1
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_tabline_fn = 'TabLine'
+let g:crystalline_theme = 'gruvbox'
+
+
+" Configure swap files to go to ~/.config/nvim/tmp
+    set directory^=~/.config/nvim/tmp//
+
+
 " Enable autocompletion:
-	set wildmode=longest,list,full
+    set wildmode=longest,list,full
 " Disables automatic commenting on newline:
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" Perform dot commands over visual blocks:
-	vnoremap . :normal .<CR>
-" Goyo plugin makes text more readable when writing prose:
-	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " Spell-check set to <leader>o, 'o' for 'orthography':
-	map <leader>o :setlocal spell! spelllang=en_us<CR>
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-	set splitbelow splitright
+    map <leader>o :setlocal spell! spelllang=en_au<CR>
 
-" Nerd tree
-	map <leader>n :NERDTreeToggle<CR>
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    if has('nvim')
-        let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-    else
-        let NERDTreeBookmarksFile = '~/.vim' . '/NERDTreeBookmarks'
-    endif
-
-" vimling:
-	nm <leader><leader>d :call ToggleDeadKeys()<CR>
-	imap <leader><leader>d <esc>:call ToggleDeadKeys()<CR>a
-	nm <leader><leader>i :call ToggleIPA()<CR>
-	imap <leader><leader>i <esc>:call ToggleIPA()<CR>a
-	nm <leader><leader>q :call ToggleProse()<CR>
+"-------------------------------------------------------------------
+" Splits
+"-------------------------------------------------------------------
+" Splits open at the bottom and right, which is non-retarded, unlike vim defaults
+    set splitbelow splitright
 
 " Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
+    map <C-h> <C-w>h
+    map <C-j> <C-w>j
+    map <C-k> <C-w>k
+    map <C-l> <C-w>l
 
-" Replace ex mode with gq
-	map Q gq
+" Make adjusting split sizes easier
+    noremap <silent> <C-Left> :vertical resize +3<CR>
+    noremap <silent> <C-Right> :vertical resize -3<CR>
+    noremap <silent> <C-Up> :resize +3<CR>
+    noremap <silent> <C-Down> :resize -3<CR>
 
-" Check file in shellcheck:
-	map <leader>s :!clear && shellcheck -x %<CR>
+" Toggle between vertical and horizontal split layout
+    map <leader>th <C-w>t<C-w>H
+    map <leader>tk <C-w>t<C-w>K
 
-" Open my bibliography file in split
-	map <leader>b :vsp<space>$BIB<CR>
-	map <leader>r :vsp<space>$REFER<CR>
+" Remove the pipes from the seperator on splits
+    set fillchars+=vert:\
 
-" Replace all is aliased to S.
-	nnoremap S :%s//g<Left><Left>
-
-" Compile document, be it groff/LaTeX/markdown/etc.
-	map <leader>c :w! \| !compiler "<c-r>%"<CR>
-
-" Open corresponding .pdf/.html or preview
-	map <leader>p :!opout <c-r>%<CR><CR>
-
-" Runs a script that cleans out tex build files whenever I close out of a .tex file.
-	autocmd VimLeave *.tex !texclear %
-
+"-------------------------------------------------------------------
+" File type configuration
+"-------------------------------------------------------------------
 " Ensure files are read as what I want:
-	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-	map <leader>v :VimwikiIndex
-	let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
-	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
-	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-	autocmd BufRead,BufNewFile *.tex set filetype=tex
+    let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+    autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
+    autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
+    autocmd BufRead,BufNewFile *.tex set filetype=tex
 
-" Save file as sudo on files that require root permission
-	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+" Readmes autowrap text
+    autocmd BufRead,BufNewFile *.md set tw=79
 
-" Enable Goyo by default for mutt writing
-	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
-	autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo | set bg=light
-	autocmd BufRead,BufNewFile /tmp/neomutt* map ZZ :Goyo\|x!<CR>
-	autocmd BufRead,BufNewFile /tmp/neomutt* map ZQ :Goyo\|q!<CR>
 
-" Automatically deletes all trailing whitespace and newlines at end of file on save.
-	autocmd BufWritePre * %s/\s\+$//e
-	autocmd BufWritePre * %s/\n\+\%$//e
-	autocmd BufWritePre *.[ch] %s/\%$/\r/e
+" Automatically deletes all trailing whitespace on save.
+" except any buffer we set the b:noStripWhitespace flag
 
-" When shortcut files are updated, renew bash and ranger configs with new material:
-	autocmd BufWritePost bm-files,bm-dirs !shortcuts
-" Run xrdb whenever Xdefaults or Xresources are updated.
-	autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
-	autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
-" Recompile dwmblocks on config edit.
-	autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }
+    fun! StripTrailingWhitespace()
+        " Only strip if the b:noStripWhitespace variable isn't set
+        if exists('b:noStripWhitespace') && b:noStripWhitespace == 1
+            return
+        endif
+        %s/\s\+$//e
+    endfun
 
-" Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
-if &diff
-    highlight! link DiffText MatchParen
-endif
 
-" Function for toggling the bottom statusbar:
-let s:hidden_all = 1
-function! ToggleHiddenAll()
-    if s:hidden_all  == 0
-        let s:hidden_all = 1
-        set noshowmode
-        set noruler
-        set laststatus=0
-        set noshowcmd
-    else
-        let s:hidden_all = 0
-        set showmode
-        set ruler
-        set laststatus=2
-        set showcmd
-    endif
-endfunction
-nnoremap <leader>h :call ToggleHiddenAll()<CR>
+    autocmd BufWritePre * call StripTrailingWhitespace()
+    " override for some file types
+    autocmd BufRead,BufNewfile ~/.config/nvim/init.vim let b:noStripWhitespace=1
+
+    autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
+
+
+" -------------------------------------------------------------------
+" Configure some other key mapping
+" -------------------------------------------------------------------
+" Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
+    vnoremap <C-c> "+y
+    map <C-p> "+P
+    set clipboard=unnamed
+
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+" The C-_ is needed for terminal mode support it seems
+    set backspace=indent,eol,start
+
+    inoremap <C-BS> <C-w>
+
+" Make command short cuts
+" Silent
+    nnoremap <C-F5> :w<CR> :silent make<CR>:redr!<CR>
+    inoremap <C-F5> <Esc>:w<CR>:silent make<CR>:redr!<CR>
+    vnoremap <C-F5> :<C-U>:w<CR>:silent make<CR>:redr!<CR>
+" Not Silent
+    nnoremap <F5> :w<CR> :make<CR>
+    inoremap <F5> <Esc>:w<CR>:make<CR>
+    vnoremap <F5> :<C-U>:w<CR>:make<CR>
+
+" -------------------------------------------------------------------
+" Configure Session Management
+" -------------------------------------------------------------------
+    " Basic configuration
+    let g:session_directory='~/.config/nvim/sessions'
+    let g:session_autosave='yes'        " autosave the session on exit
+    let g:session_autoload='yes'        " autoload the default session if no files are provided
+    let g:session_autosave_periodic=5    " autosave sessions every x minutes
+    let g:session_verbose_messages=0    " don't tell me how to disable load / save prompts
+
+    " Session contents
+    set sessionoptions-=help            " Don't persist open help windows
+    set sessionoptions-=buffers            " Don't persist hidden and unloaded buffers
+    let g:session_persist_font=0        " Don't persist fonts
+    let g:session_persist_colors=0        " Don't persist colours (allow theme to manage)
+

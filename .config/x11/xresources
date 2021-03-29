@@ -2,7 +2,10 @@
 *.alpha: 0.8
 
 !! Set a default font and font size as below:
-*.font: monospace:size=10
+*.font: monospace:size=16
+
+Xft.dpi: 96
+Xcursor.size: 16
 
 /* name		dark	light */
 /* black	0	8 */

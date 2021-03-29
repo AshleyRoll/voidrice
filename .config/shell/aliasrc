@@ -13,9 +13,9 @@ done
 
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
-	cp="cp -iv" \
-	mv="mv -iv" \
-	rm="rm -vI" \
+	cp="cp -i" \
+	mv="mv -i" \
+	rm="rm -I" \
 	bc="bc -ql" \
 	mkd="mkdir -pv" \
 	yt="youtube-dl --add-metadata -i" \
@@ -25,6 +25,7 @@ alias \
 # Colorize commands when possible.
 alias \
 	ls="ls -hN --color=auto --group-directories-first" \
+	ll="ls -lahN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
@@ -32,17 +33,15 @@ alias \
 # These common commands are just too long! Abbreviate them.
 alias \
 	ka="killall" \
-	g="git" \
 	trem="transmission-remote" \
 	YT="youtube-viewer" \
-	sdn="sudo shutdown -h now" \
-	e="$EDITOR" \
-	v="$EDITOR" \
-	p="sudo pacman" \
+	vi="$EDITOR" \
 	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
-	z="zathura"
+    kp="keepass \"/home/ash/GDrive/Ash Sync (Personal)/KeePass/Ashley Roll.kdbx\""
+
+
 
 alias \
 	magit="nvim -c MagitOnly" \

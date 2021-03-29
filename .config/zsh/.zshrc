@@ -2,7 +2,7 @@
 
 # Enable colors and change prompt:
 autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
@@ -75,3 +75,18 @@ bindkey '^e' edit-command-line
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+
+autoload -Uz add-zsh-hook vcs_info
+setopt prompt_subst
+add-zsh-hook precmd vcs_info
+
+# [ash@thinkpad ~ (master|MERGING)]$
+# NOTE: single quotes are important to ensure the vcs_info is substituted in each time
+PROMPT='%B%F{yellow}%n%f%F{green}@%f%F{blue}%M%f %F{magenta}%~%f %F{red}${vcs_info_msg_0_}%f
+%F{white}$%f%b '
+
+zstyle ':vcs_info:git:*' formats       '(%b)'
+zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
+
+#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
