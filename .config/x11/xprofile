@@ -21,7 +21,8 @@ pidof -s runit &&
 
 
 
-whatsapp-nativefier &
 discord &
 slack &
+whatsapp-nativefier &
+telegram-desktop &
 

@@ -41,6 +41,9 @@ Work/
 .gnome/
 .java/
 .kube/
+.local/share/TelegramDesktop/
+.local/share/applications/mimeinfo.cache
+.local/share/applications/userapp-Telegram Desktop-0WVJ10.desktop
 .local/share/applications/jetbrains-rider.desktop
 .local/share/gdfuse/
 .local/share/gem/
