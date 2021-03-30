@@ -21,7 +21,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'mboughaba/i3config.vim'
 
 " PlantUML
 "Plug 'aklt/plantuml-syntax'
@@ -51,6 +50,12 @@ call plug#end()
     set noshowmode
     set showtabline=2
     set guioptions-=e
+
+set hidden
+set updatetime=300
+set shortmess+=c
+
+
 
 " -------------------------------------------------------------------
 " Crystaline Theme setup
@@ -128,7 +133,8 @@ let g:crystalline_theme = 'gruvbox'
     map <leader>tk <C-w>t<C-w>K
 
 " Remove the pipes from the seperator on splits
-    set fillchars+=vert:\
+    set fillchars+=vert:\ 
+
 
 "-------------------------------------------------------------------
 " File type configuration
@@ -159,6 +165,7 @@ let g:crystalline_theme = 'gruvbox'
     " override for some file types
     autocmd BufRead,BufNewfile ~/.config/nvim/init.vim let b:noStripWhitespace=1
 
+" automatically rebuild and restart dwmblocks on edit
     autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
 
 
@@ -171,20 +178,9 @@ let g:crystalline_theme = 'gruvbox'
     set clipboard=unnamed
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
-" The C-_ is needed for terminal mode support it seems
     set backspace=indent,eol,start
 
     inoremap <C-BS> <C-w>
-
-" Make command short cuts
-" Silent
-    nnoremap <C-F5> :w<CR> :silent make<CR>:redr!<CR>
-    inoremap <C-F5> <Esc>:w<CR>:silent make<CR>:redr!<CR>
-    vnoremap <C-F5> :<C-U>:w<CR>:silent make<CR>:redr!<CR>
-" Not Silent
-    nnoremap <F5> :w<CR> :make<CR>
-    inoremap <F5> <Esc>:w<CR>:make<CR>
-    vnoremap <F5> :<C-U>:w<CR>:make<CR>
 
 " -------------------------------------------------------------------
 " Configure Session Management
