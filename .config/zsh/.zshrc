@@ -90,3 +90,6 @@ zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
 
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
+
+# start in work directory
+cd ~/Work
