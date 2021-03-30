@@ -9,12 +9,14 @@ Work/
 .cache/
 .config/azuredatastudio/
 .config/BraveSoftware/
+.config/GIMP
 .config/configstore/
 .config/dconf/
 .config/discord/
 .config/fontconfig/fonts.conf.new
 .config/fontconfig/fonts.conf.orig
 .config/gdfuse/
+.config/gtk-2.0/
 .config/helm/
 .config/htop/
 .config/JetBrains/
