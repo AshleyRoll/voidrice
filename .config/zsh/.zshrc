@@ -85,6 +85,7 @@ add-zsh-hook precmd vcs_info
 PROMPT='%B%F{yellow}%n%f%F{green}@%f%F{blue}%M%f %F{magenta}%~%f %F{red}${vcs_info_msg_0_}%f
 %F{white}$%f%b '
 
+zstyle ':vsc_info:*' enable git
 zstyle ':vcs_info:git:*' formats       '(%b)'
 zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
 
