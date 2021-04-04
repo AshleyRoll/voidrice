@@ -1,15 +1,22 @@
 Downloads/
+Documents/
 GDrive/
 Work/
 
+.SimSmith/
 .aspnet/
 .aws/
 .azuredatastudio/
 .bundle/
 .cache/
+.conan/
+.gnupg/
+.install4j
+
 .config/azuredatastudio/
 .config/BraveSoftware/
 .config/GIMP
+.config/NanoVNASaver/
 .config/configstore/
 .config/dconf/
 .config/discord/
@@ -32,6 +39,7 @@ Work/
 .config/pulse
 .config/shell/shortcutrc
 .config/shell/zshnameddirrc
+.config/spotify/
 .config/Slack/
 .config/teams/
 .config/Unknown Organization/
@@ -44,14 +52,13 @@ Work/
 .java/
 .kube/
 .local/share/TelegramDesktop/
-.local/share/applications/mimeinfo.cache
-.local/share/applications/userapp-Telegram Desktop-0WVJ10.desktop
-.local/share/applications/jetbrains-rider.desktop
+.local/share/applications/
 .local/share/backgrounds/
 .local/share/gdfuse/
 .local/share/gem/
 .local/share/history
 .local/share/JetBrains/
+.local/share/SimSmith/
 .local/share/lf/
 .local/share/MicrosoftCredentialProvider/
 .local/share/newsboat/
@@ -62,6 +69,9 @@ Work/
 .local/share/xorg/
 .local/share/zathura/
 .local/src/
+.local/bin/
+.local/include/
+.local/lib
 .mono/
 .npm/
 .nuget/
