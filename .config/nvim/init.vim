@@ -42,4 +42,8 @@ source ~/.config/nvim/cfg/code-completion.vim
 source ~/.config/nvim/cfg/crystaline-theme.vim
 source ~/.config/nvim/cfg/splits.vim
 source ~/.config/nvim/cfg/session-management.vim
+source ~/.config/nvim/cfg/lsp-config.vim
+
+luafile ~/.config/nvim/cfg/compe-config.lua
+luafile ~/.config/nvim/cfg/lsp-language-servers.lua
 
