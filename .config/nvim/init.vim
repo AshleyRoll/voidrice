@@ -16,7 +16,6 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 " Themes
 Plug 'rbong/vim-crystalline'
 Plug 'morhetz/gruvbox'
-"Plug 'joshdick/onedark.vim'
 
 " basic tools
 Plug 'vimwiki/vimwiki'
@@ -45,13 +44,14 @@ source ~/.config/nvim/cfg/general/file-types.vim
 
 source ~/.config/nvim/cfg/keys/mappings.vim
 
-"source ~/.config/nvim/cfg/theme/onedark.vim
 source ~/.config/nvim/cfg/theme/gruvbox.vim
 source ~/.config/nvim/cfg/theme/crystaline-theme.vim
 
 
 source ~/.config/nvim/cfg/lsp/config.vim
+luafile ~/.config/nvim/cfg/lsp/lightbulb.lua
 luafile ~/.config/nvim/cfg/lsp/language-servers.lua
 
 luafile ~/.config/nvim/cfg/completion/compe-config.lua
+
 

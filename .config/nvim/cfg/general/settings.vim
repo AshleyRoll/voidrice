@@ -39,5 +39,5 @@ set directory^=~/.config/nvim/tmp//
 set backspace=indent,eol,start
 
 " Remove the pipes from the seperator on splits (note: space on end of line)
-set fillchars+=vert:\ 
+set fillchars+=vert:\  
 

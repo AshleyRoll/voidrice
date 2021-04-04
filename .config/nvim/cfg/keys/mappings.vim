@@ -3,10 +3,10 @@ inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
 " Use alt + hjkl to resize windows
-nnoremap <silent> <M-j>    :resize -2<CR>
-nnoremap <silent> <M-k>    :resize +2<CR>
-nnoremap <silent> <M-h>    :vertical resize -2<CR>
-nnoremap <silent> <M-l>    :vertical resize +2<CR>
+noremap <silent> <C-Left>  :vertical resize +2<CR>
+noremap <silent> <C-Right> :vertical resize -2<CR>
+noremap <silent> <C-Up>    :resize +2<CR>
+noremap <silent> <C-Down>  :resize -2<CR>
 
 " TAB in general mode will move to text buffer
 nnoremap <TAB> :bnext<CR>
@@ -25,3 +25,6 @@ inoremap <C-BS> <C-w>
 " Spell-check set to <leader>o, 'o' for 'orthography':
 map <leader>o :setlocal spell! spelllang=en_au<CR>
 
+" Toggle between vertical and horizontal split layout
+map <leader>th <C-w>t<C-w>H
+map <leader>tv <C-w>t<C-w>K
