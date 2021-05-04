@@ -11,8 +11,13 @@ Work/
 .cache/
 .conan/
 .gnupg/
+.cups/
+.dmrc
+.gem/
 .install4j
+.templateengine/
 
+.audacity-data/
 .config/azuredatastudio/
 .config/BraveSoftware/
 .config/GIMP
@@ -24,6 +29,7 @@ Work/
 .config/fontconfig/fonts.conf.orig
 .config/gdfuse/
 .config/gtk-2.0/
+.config/gtk-3.0/
 .config/helm/
 .config/htop/
 .config/JetBrains/
@@ -42,6 +48,7 @@ Work/
 .config/spotify/
 .config/Slack/
 .config/teams/
+.config/teamviewer/
 .config/Unknown Organization/
 .config/whatsapp-nativefier-d40211/
 .config/zoomus.conf
@@ -65,6 +72,7 @@ Work/
 .local/share/NuGet/
 .local/share/nvim/
 .local/share/recently-used.xbel
+.local/share/teamviewer15/
 .local/share/weatherreport
 .local/share/xorg/
 .local/share/zathura/

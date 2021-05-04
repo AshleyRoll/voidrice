@@ -39,7 +39,8 @@ alias \
 	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
-    kp="keepass \"/home/ash/GDrive/Ash Sync (Personal)/KeePass/Ashley Roll.kdbx\""
+    kp="keepass \"/home/ash/GDrive/Ash Sync (Personal)/KeePass/Ashley Roll.kdbx\"" \
+    za="zathura"
 
 
 

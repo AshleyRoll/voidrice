@@ -12,3 +12,5 @@ nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 nnoremap <buffer> <M-CR> :lua vim.lsp.buf.code_action()<CR>
+
+nnoremap <silent> <leader>f :lua vim.lsp.buf.formatting()<CR>
