@@ -2,7 +2,14 @@ Downloads/
 Documents/
 GDrive/
 Work/
+Arduino/
 
+.GA_ClientID
+.install4j
+
+.AstroDMx/
+.ICAClient/
+.arduino15/
 .SimSmith/
 .aspnet/
 .aws/
@@ -14,7 +21,6 @@ Work/
 .cups/
 .dmrc
 .gem/
-.install4j
 .templateengine/
 
 .audacity-data/
@@ -36,6 +42,7 @@ Work/
 .config/KeePass/
 .config/Lens/
 .config/menus/
+.config/modem-manager-gui/
 .config/Microsoft/
 .config/.mono/
 .config/ncmpcpp/error.log
@@ -66,6 +73,7 @@ Work/
 .local/share/history
 .local/share/JetBrains/
 .local/share/SimSmith/
+.local/share/SymbolSourceSymbols/
 .local/share/lf/
 .local/share/MicrosoftCredentialProvider/
 .local/share/newsboat/

@@ -1,0 +1,36 @@
+#!/bin/sh
+
+tpenable="🐭"
+tpdisable="🐁"
+
+
+
+# Use xinput list and do a search for touchpads. Then get the first one and get its name.
+device="$(xinput list | grep -P '(?<= )[\w\s:]*(?i)(touchpad|synaptics)(?-i).*?(?=\s*id)' -o | head -n1)"
+
+toggle_touchpad_status() {
+    # If it was activated disable it and if it wasn't disable it
+    if [[ "$(xinput list-props "$device" | grep -P ".*Device Enabled.*\K.(?=$)" -o)" == "1" ]]
+    then
+        xinput disable "$device"
+        notify-send "$tpdisable Touch Pad Disabled"
+    else
+        xinput enable "$device"
+        notify-send "$tpenable Touch Pad Enabled"
+    fi
+    # force dwmblocks to update (signal 30)
+    kill -64 $(pidof dwmblocks)
+}
+
+case $BLOCK_BUTTON in
+    1) notify-send "Touch Pad" "Device: $device
+$tpenable: Enabled
+$tpdisable: Disabled (Mouse only)" ;;
+    3) toggle_touchpad_status ;;
+esac
+
+
+[[ "$(xinput list-props "$device" | grep -P ".*Device Enabled.*\K.(?=$)" -o)" == "1" ]] &&
+    printf "$tpenable" ||
+    printf "$tpdisable"
+

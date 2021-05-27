@@ -46,3 +46,6 @@ alias \
 
 alias \
 	newbg="setbg ${XDG_DATA_HOME:-$HOME/.local/share}/backgrounds"
+
+alias \
+    citrix="/opt/Citrix/ICAClient/wfica.sh"
