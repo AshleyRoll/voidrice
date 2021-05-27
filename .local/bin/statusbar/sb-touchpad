@@ -25,7 +25,9 @@ toggle_touchpad_status() {
 case $BLOCK_BUTTON in
     1) notify-send "Touch Pad" "Device: $device
 $tpenable: Enabled
-$tpdisable: Disabled (Mouse only)" ;;
+$tpdisable: Disabled (Mouse only)
+
+Right-click toggles touch pad" ;;
     3) toggle_touchpad_status ;;
 esac
 
